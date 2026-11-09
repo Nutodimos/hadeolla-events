@@ -8,8 +8,8 @@ import { brand } from '@/lib/brand';
 const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Gallery', href: '#gallery' },
+  { label: 'Process', href: '#process' },
   { label: 'Reviews', href: '#reviews' },
-  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Header() {
@@ -41,7 +41,7 @@ export default function Header() {
           backgroundColor: scrolled ? 'rgba(255, 250, 247, 0.94)' : 'transparent',
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-5 py-3.5 sm:py-4">
           <Logo />
 
           {/* Desktop Navigation */}
@@ -59,7 +59,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="#booking"
               className="inline-flex items-center rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-sm active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
               style={{
                 backgroundColor: brand.colors.primary,
@@ -67,7 +67,7 @@ export default function Header() {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = brand.colors.accent)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = brand.colors.primary)}
             >
-              Get a Quote
+              Reserve Date
             </a>
           </nav>
 
@@ -109,19 +109,19 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
             className="fixed inset-0 z-40 backdrop-blur-md flex flex-col items-center justify-center px-6"
             style={{ backgroundColor: 'rgba(255, 250, 247, 0.98)' }}
           >
-            <nav className="flex flex-col items-center gap-7 w-full max-w-xs" aria-label="Mobile navigation">
+            <nav className="flex flex-col items-center gap-6 w-full max-w-xs" aria-label="Mobile navigation">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
+                  transition={{ delay: i * 0.04, duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
                   className="text-2xl font-bold tracking-tight py-1"
                   style={{ fontFamily: 'var(--font-serif)', color: brand.colors.text }}
                 >
@@ -129,16 +129,36 @@ export default function Header() {
                 </motion.a>
               ))}
               <motion.a
-                href="#contact"
+                href="#booking"
                 onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.22, duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                className="mt-6 w-full text-center rounded-full py-3.5 text-base font-semibold text-white shadow-md active:scale-[0.97] transition-[transform,background-color] duration-160"
+                transition={{ delay: 0.18, duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                className="mt-4 w-full text-center rounded-full py-3.5 text-base font-semibold text-white shadow-md active:scale-[0.97] transition-[transform,background-color] duration-160"
                 style={{ backgroundColor: brand.colors.primary }}
               >
-                Get a Free Quote
+                Reserve Your Date
               </motion.a>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.22, duration: 0.2 }}
+                className="mt-6 pt-6 border-t w-full flex items-center justify-center gap-6 text-xs text-neutral-600"
+                style={{ borderColor: `${brand.colors.primaryLight}40` }}
+              >
+                <a href={`tel:${brand.phone}`} className="flex items-center gap-1 font-semibold">
+                  📞 {brand.phone}
+                </a>
+                <a
+                  href={`https://wa.me/${brand.whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 font-semibold text-emerald-600"
+                >
+                  💬 WhatsApp
+                </a>
+              </motion.div>
             </nav>
           </motion.div>
         )}

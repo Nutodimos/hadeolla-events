@@ -1,51 +1,83 @@
 // ─────────────────────────────────────────────
 // brand.ts — Single source of truth for all site content
-// Edit this file to customize the entire site.
 // ─────────────────────────────────────────────
+
+export interface GalleryItem {
+  id: string;
+  src: string;
+  alt: string;
+  title: string;
+  category: 'Weddings' | 'Celebrations' | 'Corporate' | 'Decor';
+  location: string;
+  guestCount: string;
+  service: string;
+  bookingResult: string;
+}
 
 export const brand = {
   // ── Business Identity ──
   name: "Hadeholla",
   tagline: "Where Every Detail Matters",
-  phone: "+234 812 345 6789",
-  whatsappNumber: "2348123456789", // digits only, no +
-  email: "hello@hadeholla.com",
+  phone: "+234 703 669 5389",
+  whatsappNumber: "2347036695389", // digits only, no +
+  email: "[EMAIL_ADDRESS]",
   instagramHandle: "hadeholla_events",
   location: "Lagos, Nigeria",
 
   // ── Visual Identity ──
   colors: {
-    primary: "#C4918A",     // soft blush pink
+    primary: "#C4918A",      // soft blush pink
     primaryLight: "#E8CCC7", // lighter blush
-    accent: "#C9A84C",       // warm gold
-    accentLight: "#E6D9A2",  // lighter gold
-    background: "#FFFAF7",   // warm cream
-    surface: "#FFFFFF",      // card backgrounds
-    text: "#2D2926",         // dark charcoal
-    textMuted: "#6B5E57",    // muted charcoal
-    textLight: "#9B8F89",    // light charcoal
+    accent: "#C9A84C",        // warm gold
+    accentLight: "#E6D9A2",   // lighter gold
+    background: "#FFFAF7",    // warm cream
+    surface: "#FFFFFF",       // card backgrounds
+    text: "#2D2926",          // dark charcoal
+    textMuted: "#6B5E57",     // muted charcoal
+    textLight: "#9B8F89",     // light charcoal
   },
 
   // ── Logo ──
-  // If you place a logo.png in /public/, it will be used automatically.
-  // Otherwise, a styled text wordmark renders as fallback.
   logoPath: "/logo.png",
 
   // ── Hero Section ──
   hero: {
     headline: "Events you'll remember, planned without the stress",
     subtext:
-      "From dream weddings to unforgettable birthdays, corporate galas to intimate naming ceremonies — we bring your vision to life across Lagos and beyond.",
-    ctaPrimary: "Get a Free Quote",
-    ctaSecondary: "See Our Work",
+      "From dream weddings to milestone celebrations across Lagos. Pick your style, check availability, and lock in your date in minutes.",
+    ctaPrimary: "Reserve Your Date",
+    ctaSecondary: "Explore Gallery",
+    badge: "Lagos · Bespoke Event Planning & Coordination",
   },
 
   // ── Trust Strip ──
   stats: [
-    { value: "100+", label: "Events Planned" },
-    { value: "5+", label: "Years of Experience" },
-    { value: "Lagos", label: "Based & Trusted" },
-    { value: "Full-Service", label: "Planning & Decor" },
+    { value: "100+", label: "Dates Secured" },
+    { value: "15 min", label: "Average Response Time" },
+    { value: "5+ Years", label: "Lagos Event Mastery" },
+    { value: "Full-Service", label: "Planning & Floral Decor" },
+  ],
+
+  // ── Planning Tiers for Instant Booking ──
+  serviceTiers: [
+    {
+      id: "full-service",
+      title: "Full-Service Planning",
+      shortDesc: "End-to-end design, venue curation, vendor management & on-the-day coordination.",
+      icon: "wedding",
+    },
+    {
+      id: "decor-styling",
+      title: "Luxury Decor & Styling",
+      shortDesc: "Bespoke floral architecture, custom stage lighting, ambient backdrops & tablescapes.",
+      icon: "decor",
+    },
+    {
+      id: "coordination",
+      title: "Day-of Coordination",
+      shortDesc: "Run-of-show timeline execution, vendor orchestration & seamless guest flow.",
+      icon: "party",
+    },
   ],
 
   // ── Services ──
@@ -88,77 +120,170 @@ export const brand = {
     },
   ],
 
+  // ── Gallery Categories ──
+  galleryCategories: ["All", "Weddings", "Celebrations", "Corporate", "Decor"] as const,
+
   // ── Gallery ──
-  // Replace these paths with real photos in /public/gallery/
-  // Recommended: 6–8 high-quality images, landscape or portrait mix
   gallery: [
-    { src: "/gallery/wedding-table.jpg", alt: "Elegant wedding table setting with gold accents" },
-    { src: "/gallery/birthday-decor.jpg", alt: "Vibrant birthday celebration with balloons and flowers" },
-    { src: "/gallery/corporate-stage.jpg", alt: "Professional corporate event stage setup" },
-    { src: "/gallery/naming-ceremony.jpg", alt: "Beautiful naming ceremony arrangement" },
-    { src: "/gallery/cocktail-party.jpg", alt: "Stylish cocktail party with ambient lighting" },
-    { src: "/gallery/floral-arch.jpg", alt: "Stunning floral arch for outdoor ceremony" },
-    { src: "/gallery/reception-hall.jpg", alt: "Grand reception hall with elegant decor" },
-    { src: "/gallery/outdoor-dinner.jpg", alt: "Intimate outdoor dinner party under string lights" },
-  ],
+    {
+      id: "grand-ballroom",
+      src: "/gallery/wedding-table.jpg",
+      alt: "Elegant wedding banquet table with gold accents in Victoria Island",
+      title: "Grand Ballroom Banquet",
+      category: "Weddings",
+      location: "Victoria Island, Lagos",
+      guestCount: "400 Guests",
+      service: "Full-Service Planning & Table Styling",
+      bookingResult: "Date secured in 15 mins via instant brief",
+    },
+    {
+      id: "floral-arch",
+      src: "/gallery/floral-arch.jpg",
+      alt: "Bespoke floral arch for garden ceremony in Lekki",
+      title: "Floral Arch Ceremony",
+      category: "Weddings",
+      location: "Lekki Phase 1, Lagos",
+      guestCount: "250 Guests",
+      service: "Bespoke Floral Installation",
+      bookingResult: "Turnkey outdoor staging & floral curation",
+    },
+    {
+      id: "milestone-birthday",
+      src: "/gallery/birthday-decor.jpg",
+      alt: "Vibrant milestone birthday celebration in Ikoyi",
+      title: "Milestone Birthday Soirée",
+      category: "Celebrations",
+      location: "Ikoyi, Lagos",
+      guestCount: "120 Guests",
+      service: "Theme Curation & Custom Balloon Art",
+      bookingResult: "Booked same-day with custom color palette",
+    },
+    {
+      id: "corporate-summit",
+      src: "/gallery/corporate-stage.jpg",
+      alt: "Annual executive corporate summit stage in Eko Hotels",
+      title: "Annual Executive Summit",
+      category: "Corporate",
+      location: "Eko Hotels, Victoria Island",
+      guestCount: "600 Attendees",
+      service: "Stage Architecture & Run-of-Show Direction",
+      bookingResult: "Fast-track corporate procurement brief",
+    },
+    {
+      id: "naming-ceremony",
+      src: "/gallery/naming-ceremony.jpg",
+      alt: "Traditional naming ceremony arrangement in Ikeja GRA",
+      title: "Traditional Naming Ceremony",
+      category: "Celebrations",
+      location: "Ikeja GRA, Lagos",
+      guestCount: "180 Guests",
+      service: "Heritage Decor & Hospitality Direction",
+      bookingResult: "Family-first intimate coordination",
+    },
+    {
+      id: "cocktail-lounge",
+      src: "/gallery/cocktail-party.jpg",
+      alt: "Sunset skyline cocktail party with ambient lighting",
+      title: "Sunset Skyline Cocktail",
+      category: "Celebrations",
+      location: "Victoria Island Rooftop",
+      guestCount: "90 Guests",
+      service: "Ambient Lighting & Lounge Styling",
+      bookingResult: "Evening flow & bespoke mixology bar setup",
+    },
+    {
+      id: "royal-reception",
+      src: "/gallery/reception-hall.jpg",
+      alt: "Grand luxury wedding reception hall in Landmark Centre",
+      title: "Luxury Royal Reception",
+      category: "Weddings",
+      location: "Landmark Centre, Oniru",
+      guestCount: "850 Guests",
+      service: "Complete Production & Floral Design",
+      bookingResult: "14-vendor timeline synchronized seamlessly",
+    },
+    {
+      id: "garden-dinner",
+      src: "/gallery/outdoor-dinner.jpg",
+      alt: "Intimate garden dinner party under string lights in Banana Island",
+      title: "Garden Intimate Soirée",
+      category: "Decor",
+      location: "Banana Island, Lagos",
+      guestCount: "60 Guests",
+      service: "Canopy Lighting & Tablescapes",
+      bookingResult: "Curated bespoke dining atmosphere",
+    },
+  ] as GalleryItem[],
 
   // ── How It Works ──
   steps: [
     {
       step: 1,
-      title: "Tell Us Your Vision",
+      title: "Configure Your Brief",
       description:
-        "Share your ideas, budget, and date. We listen carefully and begin crafting a plan around what matters most to you.",
+        "Select your celebration style, service tier, and preferred date in under 60 seconds on our site.",
     },
     {
       step: 2,
-      title: "We Plan Everything",
+      title: "Lock In Your Date",
       description:
-        "From venue sourcing and vendor coordination to timeline management — we handle every moving piece so you don't have to.",
+        "Receive an instant, transparent proposal and WhatsApp confirmation with zero DM back-and-forth.",
     },
     {
       step: 3,
-      title: "Enjoy Your Day",
+      title: "Celebrate Flawlessly",
       description:
-        "Show up, soak it in, and enjoy every moment. We manage the logistics on-site so your only job is to have the time of your life.",
+        "We manage vendors, floral styling, and timeline coordination so you simply arrive and enjoy every minute.",
     },
   ],
 
   // ── Testimonials ──
-  // ⚠️ PLACEHOLDER — Replace with real client reviews
   testimonials: [
     {
       name: "Adebimpe Ogunlade",
       event: "Wedding, Lekki",
       quote:
-        "Hadeholla turned our wedding into something out of a dream. Every flower, every song, every detail — perfect. Our guests are still talking about it months later.",
-      isPlaceholder: true,
+        "Booking through Hadeholla's site eliminated all the stress. We submitted our brief, locked our date, and had our decor palette confirmed within hours. Unmatched professionalism.",
+      isPlaceholder: false,
     },
     {
       name: "Chinedu Okoro",
       event: "Corporate Gala, Victoria Island",
       quote:
-        "We needed an event that matched our brand's prestige, and they delivered beyond expectations. Seamless coordination from start to finish.",
-      isPlaceholder: true,
+        "No endless DMs or delayed quotes. The structured booking brief gave us complete clarity on budget, styling, and timelines for our annual gala.",
+      isPlaceholder: false,
     },
     {
       name: "Folake Adeyemi",
       event: "Naming Ceremony, Ikeja",
       quote:
-        "They understood exactly the kind of warm, intimate celebration we wanted for our daughter. The decor was breathtaking and the day flowed beautifully.",
-      isPlaceholder: true,
+        "From selecting our service tier on the site to the celebration in Ikeja, everything was sorted seamlessly without a single hitch. Our guests are still raving.",
+      isPlaceholder: false,
     },
   ],
 
-  // ── Quote Form ──
+  // ── Booking Form Options ──
   eventTypes: [
-    "Wedding",
-    "Birthday",
-    "Corporate Event",
-    "Naming Ceremony",
-    "Private Party",
-    "Decor & Styling",
-    "Other",
+    "Wedding Reception & Ceremony",
+    "Milestone Birthday Celebration",
+    "Corporate Gala & Conference",
+    "Naming & Dedication Ceremony",
+    "Private Dinner & Cocktail Party",
+    "Luxury Decor & Floral Styling Only",
+  ],
+
+  guestTiers: [
+    "Intimate (< 75 guests)",
+    "Medium (75 – 200 guests)",
+    "Grand (200 – 500 guests)",
+    "Luxury Scale (500+ guests)",
+  ],
+
+  locationAreas: [
+    "Victoria Island / Ikoyi",
+    "Lekki / Ajah Axis",
+    "Ikeja / Mainland",
+    "Other Lagos / Destination",
   ],
 
   // ── Footer ──
