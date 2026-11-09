@@ -1,77 +1,34 @@
 import { brand } from '@/lib/brand';
 import ScrollReveal from './ScrollReveal';
 import SectionHeading from './SectionHeading';
+import {
+  Heart,
+  Cake,
+  Briefcase,
+  Baby,
+  PartyPopper,
+  Sparkles,
+  ArrowRight,
+} from 'lucide-react';
 
 function getServiceIcon(icon: string) {
-  const iconProps = {
-    width: 32,
-    height: 32,
-    viewBox: '0 0 24 24',
-    fill: 'none',
-    stroke: brand.colors.accent,
-    strokeWidth: 1.5,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-  };
+  const className = "w-7 h-7 text-amber-600";
 
   switch (icon) {
     case 'wedding':
-      return (
-        <svg {...iconProps} aria-hidden="true">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-        </svg>
-      );
+      return <Heart className={className} />;
     case 'birthday':
-      return (
-        <svg {...iconProps} aria-hidden="true">
-          <path d="M2 20h20" />
-          <path d="M4 20V10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10" />
-          <path d="M12 4v4" />
-          <path d="M8 4v2" />
-          <path d="M16 4v2" />
-          <rect x="6" y="8" width="12" height="4" rx="1" />
-        </svg>
-      );
+      return <Cake className={className} />;
     case 'corporate':
-      return (
-        <svg {...iconProps} aria-hidden="true">
-          <rect x="2" y="7" width="20" height="14" rx="2" />
-          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-          <path d="M12 12v.01" />
-        </svg>
-      );
+      return <Briefcase className={className} />;
     case 'naming':
-      return (
-        <svg {...iconProps} aria-hidden="true">
-          <path d="M12 2a4 4 0 0 1 4 4c0 2-2 4-4 4S8 8 8 6a4 4 0 0 1 4-4z" />
-          <path d="M12 10c-6 0-8 4-8 6v2h16v-2c0-2-2-6-8-6z" />
-          <path d="M9 2.5S10 1 12 1s3 1.5 3 1.5" />
-        </svg>
-      );
+      return <Baby className={className} />;
     case 'party':
-      return (
-        <svg {...iconProps} aria-hidden="true">
-          <path d="M8 22V19.5C8 18.12 9.12 17 10.5 17h3c1.38 0 2.5 1.12 2.5 2.5V22" />
-          <path d="M12 17V7" />
-          <path d="M7 7h10l-2-5H9L7 7z" />
-          <circle cx="12" cy="4" r="1" />
-        </svg>
-      );
+      return <PartyPopper className={className} />;
     case 'decor':
-      return (
-        <svg {...iconProps} aria-hidden="true">
-          <path d="M12 22s-8-4.5-8-11.8A4.2 4.2 0 0 1 8.2 6c1.5 0 2.9.8 3.8 2 .9-1.2 2.3-2 3.8-2A4.2 4.2 0 0 1 20 10.2c0 7.3-8 11.8-8 11.8z" />
-          <path d="M12 6V2" />
-          <path d="M10 4h4" />
-        </svg>
-      );
+      return <Sparkles className={className} />;
     default:
-      return (
-        <svg {...iconProps} aria-hidden="true">
-          <circle cx="12" cy="12" r="10" />
-          <path d="m9 12 2 2 4-4" />
-        </svg>
-      );
+      return <Sparkles className={className} />;
   }
 }
 
@@ -117,10 +74,11 @@ export default function Services() {
                 <div className="mt-5 pt-4 border-t" style={{ borderColor: `${brand.colors.primaryLight}30` }}>
                   <a
                     href="#booking"
-                    className="inline-flex items-center text-xs font-semibold uppercase tracking-wider transition-colors duration-160 ease-out active:scale-[0.98]"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider transition-colors duration-160 ease-out active:scale-[0.98]"
                     style={{ color: brand.colors.accent }}
                   >
-                    Reserve this event &rarr;
+                    <span>Reserve this event</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>

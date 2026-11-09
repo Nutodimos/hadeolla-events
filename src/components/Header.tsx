@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Logo from './Logo';
 import { brand } from '@/lib/brand';
+import { Phone, MessageCircle } from 'lucide-react';
 
 const navLinks = [
   { label: 'Services', href: '#services' },
@@ -147,16 +148,18 @@ export default function Header() {
                 className="mt-6 pt-6 border-t w-full flex items-center justify-center gap-6 text-xs text-neutral-600"
                 style={{ borderColor: `${brand.colors.primaryLight}40` }}
               >
-                <a href={`tel:${brand.phone}`} className="flex items-center gap-1 font-semibold">
-                  📞 {brand.phone}
+                <a href={`tel:${brand.phone}`} className="flex items-center gap-1.5 font-semibold">
+                  <Phone className="w-3.5 h-3.5 text-neutral-600" />
+                  <span>{brand.phone}</span>
                 </a>
                 <a
                   href={`https://wa.me/${brand.whatsappNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 font-semibold text-emerald-600"
+                  className="flex items-center gap-1.5 font-semibold text-emerald-600"
                 >
-                  💬 WhatsApp
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>WhatsApp</span>
                 </a>
               </motion.div>
             </nav>

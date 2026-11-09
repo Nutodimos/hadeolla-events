@@ -4,6 +4,16 @@ import { useState, useEffect } from 'react';
 import { brand, GalleryItem } from '@/lib/brand';
 import ScrollReveal from './ScrollReveal';
 import SectionHeading from './SectionHeading';
+import {
+  LayoutGrid,
+  Rows3,
+  MapPin,
+  Users,
+  Check,
+  X,
+  MessageCircle,
+  Sparkles,
+} from 'lucide-react';
 
 const gradientFallbacks = [
   'linear-gradient(135deg, #C4918A 0%, #E8CCC7 100%)',
@@ -62,7 +72,8 @@ function GalleryTile({ item, index, onSelect }: GalleryTileProps) {
             aria-hidden="true"
           />
           <div className="relative z-10">
-            <span className="inline-block px-2.5 py-1 mb-2 text-[10px] font-semibold uppercase tracking-wider text-white/90 bg-black/20 backdrop-blur-sm rounded-full">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 mb-2 text-[10px] font-semibold uppercase tracking-wider text-white/90 bg-black/20 backdrop-blur-sm rounded-full">
+              <Sparkles className="w-3 h-3 text-amber-300" />
               {item.category}
             </span>
             <p className="text-base font-semibold text-white drop-shadow-sm" style={{ fontFamily: 'var(--font-serif)' }}>
@@ -81,16 +92,18 @@ function GalleryTile({ item, index, onSelect }: GalleryTileProps) {
       >
         <div className="flex items-center gap-1.5 mb-1">
           <span
-            className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md"
+            className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md"
             style={{
               backgroundColor: 'rgba(201, 168, 76, 0.22)',
               color: brand.colors.accentLight,
               border: '1px solid rgba(201, 168, 76, 0.4)',
             }}
           >
+            <MapPin className="w-2.5 h-2.5" />
             {item.location.split(',')[0]}
           </span>
-          <span className="text-[10px] text-white/70 font-medium">
+          <span className="inline-flex items-center gap-1 text-[10px] text-white/70 font-medium">
+            <Users className="w-2.5 h-2.5" />
             {item.guestCount}
           </span>
         </div>
@@ -142,37 +155,40 @@ function FeedTile({ item, onSelect }: { item: GalleryItem; onSelect: (item: Gall
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'linear-gradient(to top, rgba(29, 26, 24, 0.6) 0%, transparent 45%)',
+            background: 'linear-gradient(to top, rgba(29, 26, 24, 0.65) 0%, transparent 45%)',
           }}
         />
         <div className="absolute top-4 left-4">
           <span
-            className="text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full backdrop-blur-md text-white shadow-sm"
-            style={{ backgroundColor: 'rgba(45, 41, 38, 0.65)' }}
+            className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full backdrop-blur-md text-white shadow-sm"
+            style={{ backgroundColor: 'rgba(45, 41, 38, 0.7)' }}
           >
+            <Sparkles className="w-3 h-3 text-amber-300" />
             {item.category}
           </span>
         </div>
         <div className="absolute bottom-4 left-4 right-4 text-white">
-          <p className="text-xl font-bold leading-tight drop-shadow-sm" style={{ fontFamily: 'var(--font-serif)' }}>
+          <p className="text-xl sm:text-2xl font-bold leading-tight drop-shadow-sm" style={{ fontFamily: 'var(--font-serif)' }}>
             {item.title}
           </p>
         </div>
       </div>
 
-      <div className="p-5 sm:p-6 flex flex-col gap-3">
+      <div className="p-4 sm:p-6 flex flex-col gap-3">
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span
-            className="font-medium px-2.5 py-1 rounded-lg"
+            className="inline-flex items-center gap-1 font-medium px-2.5 py-1 rounded-lg"
             style={{ backgroundColor: `${brand.colors.accent}15`, color: brand.colors.accent }}
           >
-            📍 {item.location}
+            <MapPin className="w-3 h-3" />
+            {item.location}
           </span>
           <span
-            className="font-medium px-2.5 py-1 rounded-lg"
+            className="inline-flex items-center gap-1 font-medium px-2.5 py-1 rounded-lg"
             style={{ backgroundColor: `${brand.colors.primary}15`, color: brand.colors.text }}
           >
-            👥 {item.guestCount}
+            <Users className="w-3 h-3" />
+            {item.guestCount}
           </span>
           <span
             className="font-medium px-2.5 py-1 rounded-lg"
@@ -183,26 +199,28 @@ function FeedTile({ item, onSelect }: { item: GalleryItem; onSelect: (item: Gall
         </div>
 
         <div
-          className="p-3 rounded-xl flex items-center justify-between gap-3 text-xs border"
+          className="p-3 rounded-xl flex items-center gap-2 text-xs border"
           style={{
             backgroundColor: `${brand.colors.background}`,
             borderColor: `${brand.colors.primaryLight}40`,
           }}
         >
+          <Check className="w-4 h-4 flex-shrink-0 text-amber-600" />
           <span className="font-semibold" style={{ color: brand.colors.accent }}>
-            ✓ {item.bookingResult}
+            {item.bookingResult}
           </span>
         </div>
 
-        <div className="pt-2 flex items-center gap-3">
+        <div className="pt-2 flex items-center gap-2.5">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 text-center rounded-full py-3 px-5 text-sm font-semibold text-white shadow-sm active:scale-[0.97] transition-transform duration-160 ease-out"
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-full py-3 px-4 text-sm font-semibold text-white shadow-sm active:scale-[0.97] transition-transform duration-160 ease-out"
             style={{ backgroundColor: brand.colors.primary }}
           >
-            Check Date for This Setup
+            <MessageCircle className="w-4 h-4" />
+            <span>Check Date for This Setup</span>
           </a>
           <button
             type="button"
@@ -224,8 +242,16 @@ function FeedTile({ item, onSelect }: { item: GalleryItem; onSelect: (item: Gall
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [viewMode, setViewMode] = useState<'grid' | 'feed'>('grid');
+  // Default to feed view on mobile devices for social screenshots
+  const [viewMode, setViewMode] = useState<'grid' | 'feed'>('feed');
   const [activeModalItem, setActiveModalItem] = useState<GalleryItem | null>(null);
+
+  useEffect(() => {
+    // If desktop on initial mount, set to grid view
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      setViewMode('grid');
+    }
+  }, []);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -287,7 +313,7 @@ export default function Gallery() {
             })}
           </div>
 
-          {/* View Mode Switcher (Grid vs Editorial Feed for screenshots & mobile browsing) */}
+          {/* View Mode Switcher */}
           <div
             className="flex items-center p-1 rounded-full border self-end sm:self-auto"
             style={{
@@ -299,24 +325,6 @@ export default function Gallery() {
           >
             <button
               type="button"
-              onClick={() => setViewMode('grid')}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-160 active:scale-[0.96]"
-              style={{
-                backgroundColor: viewMode === 'grid' ? brand.colors.surface : 'transparent',
-                color: viewMode === 'grid' ? brand.colors.text : brand.colors.textLight,
-                boxShadow: viewMode === 'grid' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7" rx="1" />
-                <rect x="14" y="3" width="7" height="7" rx="1" />
-                <rect x="14" y="14" width="7" height="7" rx="1" />
-                <rect x="3" y="14" width="7" height="7" rx="1" />
-              </svg>
-              Grid
-            </button>
-            <button
-              type="button"
               onClick={() => setViewMode('feed')}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-160 active:scale-[0.96]"
               style={{
@@ -325,11 +333,21 @@ export default function Gallery() {
                 boxShadow: viewMode === 'feed' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
               }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="6" rx="1" />
-                <rect x="3" y="14" width="18" height="6" rx="1" />
-              </svg>
+              <Rows3 className="w-3.5 h-3.5" />
               Feed
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('grid')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-160 active:scale-[0.96]"
+              style={{
+                backgroundColor: viewMode === 'grid' ? brand.colors.surface : 'transparent',
+                color: viewMode === 'grid' ? brand.colors.text : brand.colors.textLight,
+                boxShadow: viewMode === 'grid' ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
+              }}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              Grid
             </button>
           </div>
         </div>
@@ -374,10 +392,7 @@ export default function Gallery() {
               aria-label="Close modal"
               className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md active:scale-[0.95] transition-transform duration-160"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
+              <X className="w-5 h-5" />
             </button>
 
             {/* Modal Image */}
@@ -395,9 +410,10 @@ export default function Gallery() {
               />
               <div className="absolute bottom-4 left-5 right-5 text-white">
                 <span
-                  className="inline-block text-[10px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full mb-1.5"
+                  className="inline-flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full mb-1.5"
                   style={{ backgroundColor: brand.colors.accent }}
                 >
+                  <Sparkles className="w-2.5 h-2.5" />
                   {activeModalItem.category}
                 </span>
                 <h3 id="modal-title" className="text-xl font-bold leading-tight" style={{ fontFamily: 'var(--font-serif)' }}>
@@ -409,13 +425,19 @@ export default function Gallery() {
             {/* Modal Details */}
             <div className="p-6">
               <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
-                <div className="p-3 rounded-xl" style={{ backgroundColor: brand.colors.background }}>
-                  <p className="font-medium text-neutral-500 uppercase text-[10px] tracking-wider mb-0.5">Location</p>
-                  <p className="font-bold text-neutral-900">{activeModalItem.location}</p>
+                <div className="p-3 rounded-xl flex items-start gap-2.5" style={{ backgroundColor: brand.colors.background }}>
+                  <MapPin className="w-4 h-4 text-neutral-500 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-neutral-500 uppercase text-[10px] tracking-wider mb-0.5">Location</p>
+                    <p className="font-bold text-neutral-900">{activeModalItem.location}</p>
+                  </div>
                 </div>
-                <div className="p-3 rounded-xl" style={{ backgroundColor: brand.colors.background }}>
-                  <p className="font-medium text-neutral-500 uppercase text-[10px] tracking-wider mb-0.5">Scale</p>
-                  <p className="font-bold text-neutral-900">{activeModalItem.guestCount}</p>
+                <div className="p-3 rounded-xl flex items-start gap-2.5" style={{ backgroundColor: brand.colors.background }}>
+                  <Users className="w-4 h-4 text-neutral-500 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-neutral-500 uppercase text-[10px] tracking-wider mb-0.5">Scale</p>
+                    <p className="font-bold text-neutral-900">{activeModalItem.guestCount}</p>
+                  </div>
                 </div>
               </div>
 
@@ -427,7 +449,7 @@ export default function Gallery() {
                   {activeModalItem.service}
                 </p>
                 <div className="pt-2 border-t flex items-center gap-1.5 text-xs font-semibold" style={{ borderColor: `${brand.colors.primaryLight}30`, color: brand.colors.accent }}>
-                  <span>✓</span>
+                  <Check className="w-3.5 h-3.5 text-amber-600" />
                   <span>{activeModalItem.bookingResult}</span>
                 </div>
               </div>
@@ -438,10 +460,11 @@ export default function Gallery() {
                   href={modalWhatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center rounded-full py-3.5 px-6 text-sm font-semibold text-white shadow-md active:scale-[0.97] transition-transform duration-160 ease-out"
+                  className="w-full inline-flex items-center justify-center gap-2 text-center rounded-full py-3.5 px-6 text-sm font-semibold text-white shadow-md active:scale-[0.97] transition-transform duration-160 ease-out"
                   style={{ backgroundColor: brand.colors.primary }}
                 >
-                  Reserve a Date for Similar Setup
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Reserve a Date for Similar Setup</span>
                 </a>
                 <button
                   type="button"

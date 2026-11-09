@@ -288,7 +288,7 @@ export const brand = {
 
   // ── Footer ──
   footer: {
-    credit: "Website concept by Nutodimos",
+    copyright: "All rights reserved.",
   },
 } as const;
 
